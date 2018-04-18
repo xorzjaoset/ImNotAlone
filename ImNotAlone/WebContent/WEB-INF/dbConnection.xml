@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.3.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+
+	<!-- 커넥션풀 연결 -->
+
+	<context:property-placeholder location="classpath:db.properties" />
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close">
+		<property name="driverClass" value="${jdbc.driver}" />
+		<property name="jdbcUrl" value="${jdbc.url}" />
+		<property name="user" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+	</bean>
+	
+	
+		<!-- 트렌젝션 -->
+	  <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	  	<!-- (이 의존성은 어딘가에 정의되어 있다) -->
+	  	<property name="dataSource" ref="dataSource"/>
+	  </bean>
+	  
+	 
+ 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="mapperLocations" value="classpath:sql/*.xml"/>
+		<property name="typeAliasesPackage" value="com.myapp.domain" />  <!-- 패키지명지정, 패키지명 필요없이 클래스명가지고 사용할수 있음 -->
+	</bean> 
+		
+	<bean id="MemberDAO" class="ho.model.MemberDAO">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+	</bean> 
+	
+	<bean id="RoomStarDAO" class="ho.model.RoomStarDAO">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+	</bean>
+		
+	<bean id="MyPageDAO" class="ho.model.MyPageDAO">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+	</bean>
+
+	
+	
+	
+</beans>
+
