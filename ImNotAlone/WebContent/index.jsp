@@ -17,7 +17,7 @@
 	<a href="share/roomStar2">방스타그램2</a><Br>
 	<a href="share/roomStar3">방스타그램3</a><Br>
 	<a href="share/roomStar4">방스타그램4</a><Br>
-	<a href="share/roomStarRegisterForm">방스타그램	 올리기</a><Br>
+	<a href="share/roomStarRegisterForm">방스타그램	 올리기</a><Br> 
 	<a href="share/roomStarReviewView">후기스타그램</a><Br>
 	
         
