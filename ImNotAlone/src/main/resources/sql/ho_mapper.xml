@@ -60,6 +60,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 <select id="getContentImages" parameterType="ho.dto.RoomStarDTO" resultType="ho.dto.RoomStarDTO">
 	 	select bst_img_sname from bst_img_t where bst_board_no = #{bst_board_no}
 	 </select>
+	 <update id="updateBstView" parameterType="ho.dto.RoomStarDTO" >
+		update bst_t set bst_view = #{bst_view}+1 where bst_board_no = #{bst_board_no}
+	 </update>
+	 
 	 
 	 
 	 <!-- 댓글 등록 및 리스트 -->

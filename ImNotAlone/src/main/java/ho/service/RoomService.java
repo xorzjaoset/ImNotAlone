@@ -155,6 +155,7 @@ public class RoomService implements RoomServiceInterface, ApplicationContextAwar
 			tokenList.add(token.nextToken());
 		}
 		roomStarDTO.setType_of(tokenList);
+		
 		return roomStarDTO;
 	}
 	
@@ -222,6 +223,13 @@ public class RoomService implements RoomServiceInterface, ApplicationContextAwar
 	@Override
 	public int getLikeCount(int bst_board_no) {
 		return rsDAO.getLikeCount(bst_board_no);
+	}
+
+
+	@Override
+	public void updateBstView(RoomStarDTO roomStarDTO) {
+		int result = rsDAO.updateBstView(roomStarDTO);
+		if(result == 1)System.out.println("성공");else System.out.println("실패");		
 	}
 	
 	

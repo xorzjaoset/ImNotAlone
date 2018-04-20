@@ -127,6 +127,11 @@ public class RoomStarController {
 		System.out.println(imgList);
 		System.out.println("---------확인--------");
 		
+		
+		//bst_view 업데이트
+		rsService.updateBstView(roomStarDTO);
+		
+		
 		return "roomStarContentView";
 	}
 	

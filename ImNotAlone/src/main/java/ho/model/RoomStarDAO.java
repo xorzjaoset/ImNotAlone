@@ -84,5 +84,9 @@ public class RoomStarDAO extends SqlSessionDaoSupport{
 	public int getLikeCount(int bst_board_no) {
 		return getSqlSession().selectOne("getLikeCount", bst_board_no);
 	}
+
+	public int updateBstView(RoomStarDTO roomStarDTO) {
+		return getSqlSession().update("updateBstView", roomStarDTO);
+	}
 	
 }

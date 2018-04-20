@@ -22,5 +22,6 @@ public interface RoomServiceInterface {
 	public List<CommentDTO> getCommentList(CommentDTO commentDTO);
 	public String getWishListCheck(String user_id);
 	public int getLikeCount(int bst_board_no);
+	public void updateBstView(RoomStarDTO roomStarDTO);
 	
 }
