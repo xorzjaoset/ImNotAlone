@@ -145,6 +145,11 @@ public class RoomService implements RoomServiceInterface, ApplicationContextAwar
 	public List<RoomStarDTO> getListContents(PageVO pageVO){
 		List<RoomStarDTO> contentsList = new ArrayList<RoomStarDTO>();
 		contentsList = rsDAO.getListContents(pageVO);
+		
+		String who = rsDAO.getWhoLikes(contentsList.get(0).getBst_board_no());
+		for(int i = 0; i < contentsList.size(); i++) {
+			contentsList.get(i).setWhoLikes(who);
+		}
 		return contentsList;
 	}
 
@@ -280,6 +285,13 @@ public class RoomService implements RoomServiceInterface, ApplicationContextAwar
 //				}
 			}
 		return contentsList;
+	}
+
+
+	@Override
+	public List<String> getWhoLikes(int roomNo) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

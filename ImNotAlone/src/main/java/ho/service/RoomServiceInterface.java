@@ -28,5 +28,6 @@ public interface RoomServiceInterface {
 	public void addRecentBst(RecentDTO reDTO) throws SQLException;
 	public List<RecentDTO> getRecentNoList(String user_id);
 	public List<RoomStarDTO> getContentsList(MemberDTO member);
+	public List<String> getWhoLikes(int roomNo);
 	
 }

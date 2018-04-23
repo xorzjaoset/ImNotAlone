@@ -113,14 +113,14 @@ if(wishId.className == "fa fa-heart-o") {
 						</ul>
 					</div>
 					<!--/card-content-->
-					<div class="card-icons" > <!--  style="opacity: 1;" -->
+					<div class="card-icons"> <!--  style="opacity: 1;" -->
 						<c:set var="checkWish" value="${checkWish}"/>
 						<c:set var="board_no" value="${bst_contents.bst_board_no}"/>
 						<c:if test="${!fn:contains(checkWish,board_no)}">						
-							<a title="Add to Wishlist" id="like" onclick="changeClass('${bst_contents.bst_board_no}');">	 <i class="fa fa-heart-o" id="${bst_contents.bst_board_no}"></i></a>
+							<a title="${bst_contents.whoLikes}" id="like" onclick="changeClass('${bst_contents.bst_board_no}');">	 <i class="fa fa-heart-o" id="${bst_contents.bst_board_no}"></i></a>
 						</c:if>
 						<c:if test="${fn:contains(checkWish,board_no)}">						
-							<a title="Add to Wishlist" id="like" onclick="changeClass('${bst_contents.bst_board_no}');">	 <i class="fa fa-heart" id="${bst_contents.bst_board_no}"></i></a>
+							<a title="${bst_contents.whoLikes}" id="like" onclick="changeClass('${bst_contents.bst_board_no}');" >	 <i class="fa fa-heart" id="${bst_contents.bst_board_no}"></i></a>
 						</c:if>
 		
 					<a href="/ImNotAlone/share/roomStarContentView?bst_board_no=${bst_contents.bst_board_no}" title="View Detail">

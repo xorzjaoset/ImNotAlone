@@ -116,4 +116,22 @@ public class RoomStarDAO extends SqlSessionDaoSupport{
 	public List<RoomStarDTO> getContentList(List<Integer> recentNoList) {
 		return getSqlSession().selectList("getContetnsList", recentNoList);
 	}
+
+	public String getWhoLikes(int bst_board_no) {
+		List<String> whoLikesList = getSqlSession().selectList("getWhoLikes",bst_board_no);
+		String whoLikes = "";
+		if(whoLikesList.size() == 0) {
+			return "좋아요 한 사람이 없습니다."; 
+		}else {
+			for(int i = 0; i < whoLikesList.size(); i++) {
+				if(whoLikesList.size()-1 == i) {
+					whoLikes += whoLikesList.get(i) + "이(가) 좋아요 하였습니다.";
+					break;
+				}
+				whoLikes += whoLikesList.get(i)+", ";
+			}
+			
+		}
+		return whoLikes;
+	}
 }

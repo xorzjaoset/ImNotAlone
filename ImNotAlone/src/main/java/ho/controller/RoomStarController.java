@@ -37,8 +37,6 @@ import net.sf.json.JSONObject;
 @Controller
 public class RoomStarController {
 
- /// private static dto dto = null;
-	//setter 만들고 싱글톤 객체 autowird 
 	@Autowired
 	RoomServiceInterface rsService;
 	
@@ -77,30 +75,17 @@ public class RoomStarController {
 		model.addAttribute("checkWish", checkWish); 
 		model.addAttribute("bst_contents", contentsList);
 		model.addAttribute("pageVO", vo);
-		System.out.println("member.getRecent_list() 확인1 ::: " + MemberDTO.getRecent_list());
 			
 		
-		
+		//최근 리스트 가지고오기
+		System.out.println("member.getRecent_list() 확인 ::: " + MemberDTO.getRecent_list());
 		recent_list = rsService.getContentsList(member);
 		model.addAttribute("recent_list",recent_list);
 
-		System.out.println("member.getRecent_list() 확인 2:::" + MemberDTO.getRecent_list());
+		//누가 좋아요 했는지 가지고 오기
+		List<String> whoLikes = new ArrayList<String>();
+		
 			
-			
-//		if(session.getAttribute("member") != null) {
-//		member = (MemberDTO) session.getAttribute("member");
-//		if(member.getRecent_list() != null) {
-//		LinkedHashSet<RoomStarDTO> recent_set = member.getRecent_list();
-//		Iterator<RoomStarDTO> itr = recent_set.iterator();
-//		System.out.println("set값확인 : " + recent_set);
-//			while(itr.hasNext()) {
-//				recent_list.add(itr.next());
-//				
-//				System.out.println(recent_list.get(0));
-//			}
-//			model.addAttribute("recent_list", recent_list);
-//			}
-//		}
 		
 		
   		return "roomStarView4";
@@ -132,22 +117,6 @@ public class RoomStarController {
 		model.addAttribute("imgList", imgList);
 		model.addAttribute("cmList", cmList);
 		
-		//여기 실행 안됌.
-//		System.out.println("member.getRecent_list() 확인 ::"+member.getRecent_list());
-//		if(member.getRecent_list() != null) {
-//		Set<RoomStarDTO> recentList = member.getRecent_list();
-//			recentList.add(roomStarDTO);
-//			member.setRecent_list(recentList);
-//			System.out.println("set확인 : " + recentList);
-//			session.setAttribute("member", member);
-//			//set 작업중
-//		}else {
-//		Set<RoomStarDTO> recentList = new LinkedHashSet<RoomStarDTO>();
-//		recentList.add(roomStarDTO);
-//		member.setRecent_list(recentList);
-//		System.out.println("set확인2:"+ recentList);
-//		session.setAttribute("member", member);
-//		}
 		
 		System.out.println("---------확인--------");
 		System.out.println(roomStarDTO);

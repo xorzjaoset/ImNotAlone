@@ -25,8 +25,8 @@ public class RoomStarDTO {
 	private String bst_img_sname;
 	private long bst_img_size;
 	private List<String> type_of;
+	private String whoLikes;
 	
-
 	public RoomStarDTO() {
 		super();
 	}
@@ -145,14 +145,21 @@ public class RoomStarDTO {
 	}
 
 
-	@Override
-	public String toString() {
-		return "RoomStarDTO [user_id=" + user_id + ", bst_board_no=" + bst_board_no + ", bst_title=" + bst_title
-				+ ", bst_contents=" + bst_contents + ", bst_board_date=" + bst_board_date + ", bst_like=" + bst_like
-				+ ", bst_type_of=" + bst_type_of + ", user_file2=" + user_file2 + ", user_file=" + user_file
-				+ ", bst_img_no=" + bst_img_no + ", bst_img_path=" + bst_img_path + ", bst_img_oname=" + bst_img_oname
-				+ ", bst_img_sname=" + bst_img_sname + ", bst_img_size=" + bst_img_size + "]";
+	public String getWhoLikes() {
+		return whoLikes;
 	}
 
+	public void setWhoLikes(String whoLikes) {
+		this.whoLikes = whoLikes;
+	}
 
+	@Override
+	public String toString() {
+		return "RoomStarDTO [num=" + num + ", user_id=" + user_id + ", bst_board_no=" + bst_board_no + ", bst_title="
+				+ bst_title + ", bst_contents=" + bst_contents + ", bst_board_date=" + bst_board_date + ", bst_like="
+				+ bst_like + ", bst_view=" + bst_view + ", bst_type_of=" + bst_type_of + ", user_file2=" + user_file2
+				+ ", count=" + count + ", user_file=" + user_file + ", bst_img_no=" + bst_img_no + ", bst_img_path="
+				+ bst_img_path + ", bst_img_oname=" + bst_img_oname + ", bst_img_sname=" + bst_img_sname
+				+ ", bst_img_size=" + bst_img_size + ", type_of=" + type_of + ", whoLikes=" + whoLikes + "]";
+	}
 }

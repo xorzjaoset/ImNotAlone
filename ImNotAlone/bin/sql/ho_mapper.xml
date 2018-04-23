@@ -71,7 +71,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</if>
 		</trim>
 	</select> 
-	
+	<select id="getWhoLikes" resultType="String" parameterType="int">
+		select user_id from wish_t where bst_board_no = #{bst_board_no}
+	</select>
 	
 	
 	
