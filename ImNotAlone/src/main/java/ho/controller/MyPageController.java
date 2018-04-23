@@ -42,7 +42,7 @@ public class MyPageController {
 	@RequestMapping(value="/wishList")
 		public String wishListView(MemberDTO member, Model model) {
 		List<RoomStarDTO> wishList = new ArrayList<RoomStarDTO>();
-		wishList = mpService.getWishList(member.getUser_id());
+		wishList = mpService.getContentList(member.getUser_id());
 		int wishListCount = mpService.getWishCount(member.getUser_id());	
 		
 		System.out.println("wishList »Æ¿Œ " + wishList);

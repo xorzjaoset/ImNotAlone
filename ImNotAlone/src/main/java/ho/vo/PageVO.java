@@ -14,7 +14,12 @@ public class PageVO {
 	private int startPageNum;//시작페이지
 	private int endPageNum;  //끝 페이지
 	private int totalCount;  //게시글 전체수
+	private int bst_board_no; // 방번호
 	
+	
+	
+
+
 	public void makePaging() {
 		//기본값설정
 		if(this.totalCount ==0)return;
@@ -133,5 +138,13 @@ public class PageVO {
 		this.totalCount = totalCount;
 		this.makePaging();
 	}
+	public int getBst_board_no() {
+		return bst_board_no;
+	}
+	public void setBst_board_no(int bst_board_no) {
+		this.bst_board_no = bst_board_no;
+	}
+	
+	
 	
 }

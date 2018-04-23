@@ -56,7 +56,7 @@
                   </li>
                   <li><a href="blog.html">문의</a></li>
                   <li><a href="/ImNotAlone/share/register">이용안내</a></li>
-           		<c:if test="${member.user_id ne null}">
+           		<c:if test="${member.user_email ne null}">
                   <li class="dropdown active">
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">마이페이지<span class="caret"></span></a>
                       <ul class="dropdown-menu">
@@ -83,10 +83,10 @@
                       </ul>
                   </li>
 				</c:if>
-				<c:if test="${member.user_id eq null}">
+           		<c:if test="${member.user_email eq null}">
 	              	<li class="button-navbar"><a href="/ImNotAlone/share/login"><i class="fa fa-plus"></i> Login </a></li>
                 </c:if>
-				<c:if test="${member.user_id ne null}">
+           		<c:if test="${member.user_email ne null}">
                  	<li class="button-navbar"><a href="/ImNotAlone/share/logout"><i class="fa fa-minus"></i> Logout </a></li>
                 </c:if>
                     </ul>

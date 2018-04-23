@@ -43,15 +43,38 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 
 	<!-- 방스타 컨테츠 리스트 -->	
-	<select id="getListContents" parameterType="ho.vo.PageVO" resultType="ho.dto.RoomStarDTO">
-		select * from (
-	    select rownum r ,bst_board_no, user_id, bst_title, bst_type_of, bst_board_date, bst_img_no, bst_contents, bst_img_sname  from 
-	    (select bst_board_no, num, user_id, bst_title, bst_img_no, bst_contents, bst_img_sname, bst_type_of, bst_board_date from(
+	<!-- <select id="getListContents" parameterType="ho.vo.PageVO" resultType="ho.dto.RoomStarDTO">
+        select * from (
+	    select rownum r ,bst_board_no, user_id, bst_title, bst_type_of, bst_board_date, bst_img_no, bst_contents, bst_img_sname, bst_view  from 
+	    (select bst_board_no, num, user_id, bst_title, bst_img_no, bst_contents, bst_img_sname, bst_type_of, bst_board_date, bst_view from(
 	    select b.BST_BOARD_NO as bst_board_no, b.bst_img_no as bst_img_no, row_number() 
 		over(partition by b.BST_board_NO order by b.bst_img_no asc) num, b.BST_IMG_PATH as bst_img_path, a.user_id as user_id, b.bst_img_sname as bst_img_sname,
-		a.bst_title as bst_title, a.bst_contents as bst_contents, a.bst_board_date as bst_board_date, a.bst_like as bst_like, a.bst_type_of as bst_type_of
+		a.bst_title as bst_title, a.bst_contents as bst_contents, a.bst_board_date as bst_board_date, a.bst_like as bst_like, a.bst_type_of as bst_type_of, a.bst_view as bst_view
 		from bst_t a, bst_img_t b where a.BST_BOARD_NO = b.BST_BOARD_NO order by a.bst_board_no desc)) where num =1) where r between #{startRowNum} and #{endRowNum}  
+	</select>  -->
+	
+	<select id="getListContents" parameterType="ho.vo.PageVO" resultType="ho.dto.RoomStarDTO">
+        select * from (
+	    select rownum r ,bst_board_no, user_id, bst_title, bst_type_of, bst_board_date, bst_img_no, bst_contents, bst_img_sname, bst_view  from 
+	    (select bst_board_no, num, user_id, bst_title, bst_img_no, bst_contents, bst_img_sname, bst_type_of, bst_board_date, bst_view from(
+	    select b.BST_BOARD_NO as bst_board_no, b.bst_img_no as bst_img_no, row_number() 
+		over(partition by b.BST_board_NO order by b.bst_img_no asc) num, b.BST_IMG_PATH as bst_img_path, a.user_id as user_id, b.bst_img_sname as bst_img_sname,
+		a.bst_title as bst_title, a.bst_contents as bst_contents, a.bst_board_date as bst_board_date, a.bst_like as bst_like, a.bst_type_of as bst_type_of, a.bst_view as bst_view
+		from bst_t a, bst_img_t b where a.BST_BOARD_NO = b.BST_BOARD_NO order by a.bst_board_no desc)) where num =1) 
+		
+		 <trim prefix="WHERE" prefixOverrides="AND |OR">
+			<if test="startRowNum != null and endRowNum != null">
+				r between #{startRowNum} and #{endRowNum} 
+			</if>
+			<if test="bst_board_no neq 0">
+				and bst_board_no = #{bst_board_no}
+			</if>
+		</trim>
 	</select> 
+	
+	
+	
+	
 	 
 	 <select id="getContentBoard" parameterType="ho.dto.RoomStarDTO" resultType="ho.dto.RoomStarDTO">
 	 	select*from bst_t where bst_board_no = #{bst_board_no}
@@ -64,21 +87,39 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update bst_t set bst_view = #{bst_view}+1 where bst_board_no = #{bst_board_no}
 	 </update>
 	 
+	<!-- 방스타 최근리스트 추가 -->
+	 <insert id="addRecentBst" parameterType="ho.dto.RecentDTO" >
+	 	insert into recent_bst_t values(#{user_id},#{bst_board_no},recent_num.nextval)
+	 </insert>
+	 <select id="selectRecentBst" parameterType="ho.dto.RecentDTO" resultType="int">
+		select count(*) from recent_bst_t where user_id = #{user_id}	 
+	 </select>
+	 <select id="selectRecentBstForOdd" parameterType="ho.dto.RecentDTO" resultType="int">
+	 	select max(bst_board_no) as bst_board_no from recent_bst_t where user_id = #{user_id}
+	 </select>
+	 <delete id="oddRecentBst" parameterType="ho.dto.RecentDTO">
+	 	delete recent_bst_t where user_id = #{user_id} and bst_board_no = #{bst_board_no}
+	 </delete>
+	 <select id="checkForAddRecentBst" parameterType="ho.dto.RecentDTO" resultType="int">
+	 	select count(*) from recent_bst_t where user_id = #{user_id} and bst_board_no = #{bst_board_no}
+	 </select>
+	 <select id="getRecentNoList" parameterType="String" resultType="ho.dto.RecentDTO">
+	 	select * from recent_bst_t where user_id = #{user_id}
+	 </select>
+	 
+	 
 	 
 	 
 	 <!-- 댓글 등록 및 리스트 -->
 	<select id="getBstCountList" resultType="int">
 		select count(*) from bst_T
 	</select>
-	
 	<select id="getComment" parameterType="ho.dto.CommentDTO" resultType="ho.dto.CommentDTO">
 		select*from dg_t where #{bst_board_no} = #{dg_comment_no}
 	</select>
-	
 	<insert id="insertComment" parameterType="ho.dto.CommentDTO">
 		insert into dg_t values(#{bst_by_id}, #{bst_board_no}, dg_t_num.nextval, #{dg_comment}, #{dg_by_id}, #{dg_board_date})
 	</insert>
-
 	<select id="getCommentList" resultType="ho.dto.CommentDTO" parameterType="ho.dto.CommentDTO">
 		select*from dg_t where bst_board_no = #{bst_board_no}
 	</select>
@@ -94,7 +135,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	
-	<select id="getWishList" resultType="ho.dto.RoomStarDTO" >
+	<select id="getContetnsList" resultType="ho.dto.RoomStarDTO" >
 		select * from (
 	    select rownum r ,bst_board_no, user_id, bst_title, bst_type_of, bst_board_date, bst_img_no, bst_contents, bst_img_sname  from 
 	    (select bst_board_no, num, user_id, bst_title, bst_img_no, bst_contents, bst_img_sname, bst_type_of, bst_board_date from(
@@ -102,7 +143,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		over(partition by b.BST_board_NO order by b.bst_img_no asc) num, b.BST_IMG_PATH as bst_img_path, a.user_id as user_id, b.bst_img_sname as bst_img_sname,
 		a.bst_title as bst_title, a.bst_contents as bst_contents, a.bst_board_date as bst_board_date, a.bst_like as bst_like, a.bst_type_of as bst_type_of
 		from bst_t a, bst_img_t b where a.BST_BOARD_NO = b.BST_BOARD_NO order by a.bst_board_no desc)) where num =1)where bst_board_no in
-		
 				 <foreach item="item" collection="list" open="(" separator="," close=")">
 					 #{item}
 				 </foreach>

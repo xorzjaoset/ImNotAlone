@@ -28,6 +28,7 @@ public class LoginController {
 	
 	@RequestMapping(value="/logout",method=RequestMethod.GET)
 	public String logoutMainView(HttpSession session) {
+		MemberDTO.getRecent_list().clear();  //최근 리스트 삭제
 		session.invalidate();
 		return "mainView";
 	}

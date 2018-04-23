@@ -233,62 +233,30 @@ if(wishId.className == "fa fa-heart-o") {
                            <div class="form-group">
                                <input type="text" class="form-control" placeholder="Min Price...">
                            </div>
-                           <input type="submit" class="btn btn-dark btn-lg btn-block" value="Search">
+                           <input type="submit" class="btn btn-dark btn-lg btn-block" value="검색하기">
                        </form>
                    </div>
-                   <h4 class="left-title mb20">Recent Listings</h4>
+					<c:if test="${recent_list ne null}">                  
+                   <h4 class="left-title mb20">최근 본 방</h4>
                    <ul  class="list-unstyled recent-item-card mb40">
+                   <c:forEach var="recent_list" items="${recent_list}">
                        <li class="media">
                            <div class="media-left">
-                               <a href="#">
-                                   <img src="/ImNotAlone/resources/images/img1.jpg" alt="" class="img-responsive" width="90">
+                               <a href="/ImNotAlone/share/roomStarContentView?bst_board_no=${recent_list.bst_board_no}">
+                                   <img src="<%=cp%>/uploadedFile/${recent_list.bst_img_sname}" alt="" class="img-responsive" width="90">
                                </a>
                            </div>
                            <div class="media-body">
-                               <h4><a href="#">Doloremque laudantium, totam rem aperiam</a></h4>
-                               <em>New York / Coffee</em>
-                               <span class="text-primary">$140/Person</span>
+                               <h4><a href="#">${recent_list.bst_title}</a></h4>
+                               <em>${recent_list.bst_type_of}</em>
+                               <span class="text-primary">${recent_list.user_id}</span>
                            </div>
                        </li><!--/li-->
-                       <li class="media">
-                           <div class="media-left">
-                               <a href="#">
-                                   <img src="/ImNotAlone/resources/images/img2.jpg" alt="" class="img-responsive" width="90">
-                               </a>
-                           </div>
-                           <div class="media-body">
-                               <h4><a href="#">Doloremque laudantium, totam rem aperiam</a></h4>
-                               <em>New York / Coffee</em>
-                               <span class="text-primary">$140/Person</span>
-                           </div>
-                       </li><!--/li-->
-                       <li class="media">
-                           <div class="media-left">
-                               <a href="#">
-                                   <img src="/ImNotAlone/resources/images/img3.jpg" alt="" class="img-responsive" width="90">
-                               </a>
-                           </div>
-                           <div class="media-body">
-                               <h4><a href="#">Doloremque laudantium, totam rem aperiam</a></h4>
-                               <em>New York / Coffee</em>
-                               <span class="text-primary">$140/Person</span>
-                           </div>
-                       </li><!--/li-->
+					</c:forEach>
+
                    </ul><!--/ul-->
-                   <h4 class="left-title mb20">Popular Tags</h4>
-                   <ul class="list-inline tags-list">
-                       <li><a href="#"><i class="fa fa-tag"></i> Shop</a></li>
-                       <li><a href="#"><i class="fa fa-tag"></i> Beer</a></li>
-                       <li><a href="#"><i class="fa fa-tag"></i> Beach</a></li>
-                       <li><a href="#"><i class="fa fa-tag"></i> Cinemas</a></li>
-                       <li><a href="#"><i class="fa fa-tag"></i> Hotel</a></li>
-                       <li><a href="#"><i class="fa fa-tag"></i> Dinner</a></li>
-                       <li><a href="#"><i class="fa fa-tag"></i> Lunch</a></li>
-                       <li><a href="#"><i class="fa fa-tag"></i> Taxi</a></li>
-                       <li><a href="#"><i class="fa fa-tag"></i> Bar & pubs</a></li>
-                       <li><a href="#"><i class="fa fa-tag"></i> Games</a></li>
-                       <li><a href="#"><i class="fa fa-tag"></i> Tickets</a></li>
-                   </ul>
+                   </c:if>
+                   
                </div>
            </div>
        </div>

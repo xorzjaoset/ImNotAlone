@@ -1,14 +1,12 @@
 package ho.model;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.transaction.annotation.Transactional;
 
 import ho.dto.CommentDTO;
-import ho.dto.MemberDTO;
+import ho.dto.RecentDTO;
 import ho.dto.RoomStarDTO;
 import ho.dto.WishListDTO;
 import ho.vo.PageVO;
@@ -45,6 +43,7 @@ public class RoomStarDAO extends SqlSessionDaoSupport{
 	}
 
 	public RoomStarDTO getContentBoard(RoomStarDTO roomStarDTO) {
+		System.out.println("roomStarDTO.getBst_board_no() : " + roomStarDTO.getBst_board_no());
 		return getSqlSession().selectOne("getContentBoard",roomStarDTO);
 	}
 	public List<RoomStarDTO> getContentImages(RoomStarDTO roomStarDTO) {
@@ -88,5 +87,33 @@ public class RoomStarDAO extends SqlSessionDaoSupport{
 	public int updateBstView(RoomStarDTO roomStarDTO) {
 		return getSqlSession().update("updateBstView", roomStarDTO);
 	}
-	
+
+	public int addRecentBst(RecentDTO reDTO) {
+		return getSqlSession().insert("addRecentBst", reDTO);
+	}
+
+	public int selectRecentBst(RecentDTO reDTO) {
+		System.out.println("reDTO!!!확인2"+reDTO);
+		return getSqlSession().selectOne("selectRecentBst", reDTO);
+	}
+
+	public int oddRecentBst(RecentDTO reDTO) {
+		int bst_board_no = getSqlSession().selectOne("selectRecentBstForOdd",reDTO);
+		reDTO.setBst_board_no(bst_board_no);
+		return getSqlSession().delete("oddRecentBst", reDTO);
+	}
+
+	public int checkForAddRecentBst(RecentDTO reDTO) {
+		int check = getSqlSession().selectOne("checkForAddRecentBst",reDTO);
+		if(check == 0) return 0;  //없음
+		else return 1; //있음
+	}
+
+	public List<RecentDTO> getRecentNoList(String user_id) {
+		return getSqlSession().selectList("getRecentNoList", user_id);
+	}
+
+	public List<RoomStarDTO> getContentList(List<Integer> recentNoList) {
+		return getSqlSession().selectList("getContetnsList", recentNoList);
+	}
 }

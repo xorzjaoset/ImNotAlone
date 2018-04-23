@@ -2,7 +2,9 @@ package ho.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 import java.util.StringTokenizer;
@@ -17,6 +19,8 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.multipart.MultipartFile;
 
 import ho.dto.CommentDTO;
+import ho.dto.MemberDTO;
+import ho.dto.RecentDTO;
 import ho.dto.RoomStarDTO;
 import ho.dto.WishListDTO;
 import ho.model.RoomStarDAO;
@@ -229,9 +233,58 @@ public class RoomService implements RoomServiceInterface, ApplicationContextAwar
 	@Override
 	public void updateBstView(RoomStarDTO roomStarDTO) {
 		int result = rsDAO.updateBstView(roomStarDTO);
-		if(result == 1)System.out.println("성공");else System.out.println("실패");		
+		if(result == 1)System.out.println("뷰 업데이트성공");else System.out.println("뷰 업데이트 실패");		
 	}
+
+
+	@Override
+	public void addRecentBst(RecentDTO reDTO) throws SQLException {
+		int addResult = 0, listCheck, recentList, checkList = 0;
 	
+		listCheck = rsDAO.checkForAddRecentBst(reDTO);
+		if(listCheck == 0)
+		addResult = rsDAO.addRecentBst(reDTO);
+		if(addResult != 0) {
+			recentList = rsDAO.selectRecentBst(reDTO); /*리스츠가 3개이상인지 확인*/
+			if(recentList >3 ) {
+				checkList = rsDAO.oddRecentBst(reDTO);/*3개 이상이라면 삭제*/
+				if(checkList == 1)System.out.println("최근리스트 삭제 성공");
+				else System.out.println("최근리스트 에러 실패?");}
+			
+			System.out.println("최근리스트 추가 성공");
+		}else {
+			System.err.println("최근리스트 추가 실패");
+		}
+	}
+
+
+	@Override
+	public List<RecentDTO> getRecentNoList(String user_id) {
+		return rsDAO.getRecentNoList(user_id);
+	}
+
+
+	@Override
+	public List<RoomStarDTO> getContentsList(MemberDTO member) {
+		List<Integer> recentNoList = new ArrayList<Integer>();
+		List<RoomStarDTO> contentsList = new ArrayList<RoomStarDTO>();
+		Iterator<Integer> itr =  MemberDTO.getRecent_list().iterator();
+			while(itr.hasNext()) {
+				recentNoList.add(itr.next());
+				contentsList = rsDAO.getContentList(recentNoList);
+
+				//작업해야함
+//				if(recent_list.size() > 3) {
+//					recent_list.remove(0);
+//					System.out.println("recent_list.size() !!!" + recent_list.size());
+//				}
+			}
+		return contentsList;
+	}
+
+
+
+
 	
 
 }

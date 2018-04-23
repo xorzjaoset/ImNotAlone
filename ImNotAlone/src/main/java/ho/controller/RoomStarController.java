@@ -1,12 +1,21 @@
 package ho.controller;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
+import java.util.StringTokenizer;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -17,8 +26,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import ho.dto.CommentDTO;
 import ho.dto.MemberDTO;
+import ho.dto.RecentDTO;
 import ho.dto.RoomStarDTO;
 import ho.dto.WishListDTO;
+import ho.service.MyPageInterface;
 import ho.service.RoomServiceInterface;
 import ho.vo.PageVO;
 import net.sf.json.JSONObject;
@@ -26,9 +37,11 @@ import net.sf.json.JSONObject;
 @Controller
 public class RoomStarController {
 
+ /// private static dto dto = null;
+	//setter 만들고 싱글톤 객체 autowird 
 	@Autowired
 	RoomServiceInterface rsService;
-
+	
 	@RequestMapping(value = "/roomStar", method = RequestMethod.GET)
 	public String roomStarView() {
 			
@@ -46,28 +59,119 @@ public class RoomStarController {
 	}
 	
 	
-	
+	//리스트 페이지
 	@RequestMapping(value="/roomStar4")
 	public String roomStarView5(@RequestParam(defaultValue="1", value="pageNum",
-		required=false)String pageNum, MemberDTO member, Model model) {
+		required=false)String pageNum, MemberDTO member, Model model, HttpSession session) {
 		System.out.println("아이디 값 확인(2) : " + member.getUser_id());
 		PageVO vo = new PageVO();
-		List<RoomStarDTO> contentsList;
-		
+		List<RoomStarDTO> contentsList = new ArrayList<RoomStarDTO>();
+		List<RoomStarDTO> recent_list = new ArrayList<RoomStarDTO>();
 		vo.setTotalCount(rsService.getCountList());
 		vo.setPageNum(Integer.parseInt(pageNum));
 		vo.makePaging();
 		contentsList = rsService.getListContents(vo);
 		String checkWish = rsService.getWishListCheck(member.getUser_id());
 		
+		
 		model.addAttribute("checkWish", checkWish); 
 		model.addAttribute("bst_contents", contentsList);
 		model.addAttribute("pageVO", vo);
+		System.out.println("member.getRecent_list() 확인1 ::: " + MemberDTO.getRecent_list());
+			
 		
 		
-		return "roomStarView4";
+		recent_list = rsService.getContentsList(member);
+		model.addAttribute("recent_list",recent_list);
+
+		System.out.println("member.getRecent_list() 확인 2:::" + MemberDTO.getRecent_list());
+			
+			
+//		if(session.getAttribute("member") != null) {
+//		member = (MemberDTO) session.getAttribute("member");
+//		if(member.getRecent_list() != null) {
+//		LinkedHashSet<RoomStarDTO> recent_set = member.getRecent_list();
+//		Iterator<RoomStarDTO> itr = recent_set.iterator();
+//		System.out.println("set값확인 : " + recent_set);
+//			while(itr.hasNext()) {
+//				recent_list.add(itr.next());
+//				
+//				System.out.println(recent_list.get(0));
+//			}
+//			model.addAttribute("recent_list", recent_list);
+//			}
+//		}
+		
+		
+  		return "roomStarView4";
 	}
+	
+	
+	
+	//컨텐츠 뷰 페이지
+	@RequestMapping(value = "/roomStarContentView", method = RequestMethod.GET)
+	public String contentView(MemberDTO member, RoomStarDTO roomStarDTO, 
+			CommentDTO commentDTO, Model model, RecentDTO recentDTO, 
+			HttpSession session) {
+		// dto = recentDTO;
+		System.out.println("아이디 값 확인(2) : " + member.getUser_id());
 		
+		System.out.println("방번호 확인 ::::"+roomStarDTO.getBst_board_no());
+		List<RoomStarDTO> imgList = new ArrayList<RoomStarDTO>();
+		List<CommentDTO> cmList = new ArrayList<CommentDTO>();
+		
+		roomStarDTO = rsService.getBstContents(roomStarDTO);
+		imgList = rsService.getBstImages(roomStarDTO);
+		cmList = rsService.getCommentList(commentDTO);
+		int likeCount = rsService.getLikeCount(roomStarDTO.getBst_board_no());
+		
+		
+		model.addAttribute("likeCount", likeCount);
+		model.addAttribute("contents", roomStarDTO);
+		model.addAttribute("type_of_list", roomStarDTO.getType_of()); //list타입
+		model.addAttribute("imgList", imgList);
+		model.addAttribute("cmList", cmList);
+		
+		//여기 실행 안됌.
+//		System.out.println("member.getRecent_list() 확인 ::"+member.getRecent_list());
+//		if(member.getRecent_list() != null) {
+//		Set<RoomStarDTO> recentList = member.getRecent_list();
+//			recentList.add(roomStarDTO);
+//			member.setRecent_list(recentList);
+//			System.out.println("set확인 : " + recentList);
+//			session.setAttribute("member", member);
+//			//set 작업중
+//		}else {
+//		Set<RoomStarDTO> recentList = new LinkedHashSet<RoomStarDTO>();
+//		recentList.add(roomStarDTO);
+//		member.setRecent_list(recentList);
+//		System.out.println("set확인2:"+ recentList);
+//		session.setAttribute("member", member);
+//		}
+		
+		System.out.println("---------확인--------");
+		System.out.println(roomStarDTO);
+		System.out.println(imgList);
+		System.out.println("---------확인--------");
+		
+		
+		//bst_view 업데이트
+		rsService.updateBstView(roomStarDTO);
+		//recent_bst 업데이트
+		recentDTO.setUser_id(member.getUser_id());
+		recentDTO.setBst_board_no(roomStarDTO.getBst_board_no());
+		try {
+			rsService.addRecentBst(recentDTO);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		//recent_bst_t
+		member.setRecent_list(roomStarDTO.getBst_board_no());
+		session.setAttribute("member", member);
+		
+		return "roomStarContentView";
+	}	
 	
 	
 	
@@ -98,42 +202,9 @@ public class RoomStarController {
 		}
 	}
 	
-	@RequestMapping(value = "/roomStarContentView", method = RequestMethod.GET)
-	public String contentView(MemberDTO member, RoomStarDTO roomStarDTO, 
-			CommentDTO commentDTO, Model model) {
-		System.out.println("아이디 값 확인(2) : " + member.getUser_id());
-		
-		System.out.println("방번호 확인 ::::"+roomStarDTO.getBst_board_no());
-		List<RoomStarDTO> imgList = new ArrayList<RoomStarDTO>();
-		List<CommentDTO> cmList = new ArrayList<CommentDTO>();
-		
-		roomStarDTO = rsService.getBstContents(roomStarDTO);
-		imgList = rsService.getBstImages(roomStarDTO);
-		cmList = rsService.getCommentList(commentDTO);
-		System.out.println(roomStarDTO.getBst_board_no()+"!!!!!!!!!");
-		int likeCount = rsService.getLikeCount(roomStarDTO.getBst_board_no());
-		
-		
-		model.addAttribute("likeCount", likeCount);
-		model.addAttribute("contents", roomStarDTO);
-		model.addAttribute("type_of_list", roomStarDTO.getType_of()); //list타입
-		model.addAttribute("imgList", imgList);
-		model.addAttribute("cmList", cmList);
-		
-		
-		
-		System.out.println("---------확인--------");
-		System.out.println(roomStarDTO);
-		System.out.println(imgList);
-		System.out.println("---------확인--------");
-		
-		
-		//bst_view 업데이트
-		rsService.updateBstView(roomStarDTO);
-		
-		
-		return "roomStarContentView";
-	}
+	
+	
+
 	
 	
 	@RequestMapping(value="/roomStarUpload")

@@ -10,8 +10,8 @@ import ho.dto.WishListDTO;
 
 public class MyPageDAO extends SqlSessionDaoSupport{
 	
-	public List<RoomStarDTO> getWishList(List<Integer> bst_board_no){
-		return getSqlSession().selectList("getWishList", bst_board_no);
+	public List<RoomStarDTO> getContentList(List<Integer> bst_board_no){
+		return getSqlSession().selectList("getContetnsList", bst_board_no);
 	}
 
 	public List<Integer> getWishNum(String user_id) {
@@ -24,7 +24,7 @@ public class MyPageDAO extends SqlSessionDaoSupport{
 	}
 
 	public int getWishCount(String user_id) {
-		return getSqlSession().selectOne("getWishListCount",user_id);
+		return getSqlSession().selectOne("getWishListCount", user_id);
 	}
 	
 }

@@ -30,22 +30,29 @@ public class MyPageService implements MyPageInterface{
 
 
 	@Override
-	public List<RoomStarDTO> getWishList(String user_id) {
-		List<Integer> bst_board_no = new ArrayList<Integer>();
+	public List<RoomStarDTO> getContentList(String user_id) {
+		List<Integer> bst_board_no_list = new ArrayList<Integer>();
 		List<RoomStarDTO> wishList = new ArrayList<RoomStarDTO>();
 
-		bst_board_no = mpDAO.getWishNum(user_id);
-		System.out.println("번호 확인 :" +bst_board_no+"리스트 사이즈 확인"+bst_board_no.size());
-		wishList = mpDAO.getWishList(bst_board_no);
+		bst_board_no_list = mpDAO.getWishNum(user_id);
+		System.out.println("번호 확인 :" +bst_board_no_list+"리스트 사이즈 확인"+bst_board_no_list.size());
+		wishList = mpDAO.getContentList(bst_board_no_list);
 		
 		return wishList;
 	}
+
 
 
 	@Override
 	public int getWishCount(String user_id) {
 		return mpDAO.getWishCount(user_id);
 	}
+
+
+//	@Override
+//	public List<RoomStarDTO> getContentList(List<Integer> recentNoList) {
+//		return mpDAO.getContentList(recentNoList);
+//	}
 
 	
 }
