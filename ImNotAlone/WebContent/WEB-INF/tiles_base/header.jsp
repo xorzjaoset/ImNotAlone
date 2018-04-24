@@ -54,7 +54,7 @@
      	                  <li><a href="/ImNotAlone/share/roomStarRegisterForm">방 자랑하기</a></li>
                       </ul>
                   </li>
-                  <li><a href="blog.html">문의</a></li>
+                  <li><a href="/ImNotAlone/share/qna">문의</a></li>
                   <li><a href="/ImNotAlone/share/register">이용안내</a></li>
            		<c:if test="${member.user_email ne null}">
                   <li class="dropdown active">
@@ -75,11 +75,11 @@
                   <li class="dropdown active">
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">관리하기<span class="caret"></span></a>
                       <ul class="dropdown-menu">
-                          <li><a href="how-work.html">블랙리스트 관리</a></li>
-                          <li><a href="pricing.html">검색 관리</a></li>
-                          <li><a href="faq.html">광고 관리</a></li>
+                          <li><a href="/ImNotAlone/share/blacklist">블랙리스트 관리</a></li>
+                          <li><a href="/ImNotAlone/share/board">게시판 관리</a></li>
+                          <li><a href="/ImNotAlone/share/superhost">광고 관리</a></li>
                           <li class="divider"></li>
-                          <li><a href="typography.html">관리자 등록 및 삭제</a></li>
+                          <li><a href="/ImNotAlone/share/admin">관리자 등록 및 삭제</a></li>
                       </ul>
                   </li>
 				</c:if>

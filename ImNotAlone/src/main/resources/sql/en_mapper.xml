@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="enadmin">
+
+	<!-- 블랙리스트 대기자명단 select -->
+	<select resultType="en.dto.BlackDTO" id="BlackWait">
+		select * from BKLT_T order by no desc
+	</select>
+
+	<!-- 블랙대기 명단 insert -->
+	<insert id="WaitInsert" parameterType="en.dto.BlackDTO">
+		insert into bklt_t(no, id, reg_dt, reason)
+			values(bklt_seq.nextval, #{id}, sysdate, #{reason})
+	</insert>
+
+	<!-- 블랙리스트 명단 select -->
+	<select resultType="en.dto.BlackDTO" id="BlackList">
+		select * from BKLT
+	</select>
+
+	<!-- session으로 방문자 수 구하기 -->
+	<!-- <insert id="insertVisitor" parameterType="en.dto.VisitCountDTO">
+		insert
+		into vt_t
+		(
+		vt_id,
+		vt_ip,
+		vt_time,
+		<if test="vt_refer != null and vt_refer != ''">
+			vt_refer,
+		</if>
+		vt_agent
+		)
+		values
+		(
+		vt_t_seq.nextval,
+		#{vt_ip},
+		sysdate,
+		<if test="vt_refer != null and vt_refer != ''">
+			#{vt_refer}
+		</if>
+		#{vt_agent}
+		)
+	</insert> -->
+
+	<!-- 문의게시판 -->
+	<!-- 문의 list -->
+	<select id="selectQna" resultType="en.dto.QnaDTO">
+		select * from qna_t where
+		dlt_yn='N' order by no desc
+	</select>
+
+	<!-- 문의 read -->
+	<select id="selectQnaOne" parameterType="String"
+		resultType="en.dto.QnaDTO">
+		select no, title, id, content, reg_dt, hit
+		from qna_t
+		where no=#{no}
+	</select>
+
+	<!-- 문의 Hit -->
+	<update id="increaseHit">
+		update qna_t
+		set hit = hit + 1
+		where no=#{no}
+	</update>
+
+	<!-- 문의 write -->
+	<insert id="qnaWrite" parameterType="en.dto.QnaDTO">
+		insert into qna_t(no, id,
+		title, content, reg_dt, hit, dlt_yn)
+		values(qna_t_seq.nextval, #{id}, #{title}, #{content}, sysdate, 0, 'N')
+	</insert>
+
+	<!-- 문의 modify -->
+	<update id="qnaModify" parameterType="en.dto.QnaDTO">
+		update qna_t
+		set title=#{title},
+		content=#{content}
+		where no=#{no}
+	</update>
+
+	<!-- 문의 delete -->
+	<delete id="qnaDelete" parameterType="String">
+		update qna_t
+		set dlt_yn='Y'
+		where no=#{no}
+	</delete>
+
+	<!-- 댓글 -->
+	<!-- 댓글 count -->
+	<select id="qnaRepCount" resultType="int">
+		select
+		count(*)
+		from qna_rep_t
+	</select>
+
+	<!-- 댓글 list -->
+	<select id="selectQnaRep" resultType="en.dto.QnaRepDTO">
+		select * from qna_rep_t
+		where dlt_yn='N'
+	</select>
+
+	<!-- 댓글 write -->
+	<insert id="qnaRepWrite" parameterType="en.dto.QnaRepDTO">
+		insert into
+		qna_rep_t(no, rep_no, id, rep_content, rep_reg_tm, dlt_yn)
+		values(qna_t_seq.nextval, qna_rep_t_seq.nextval, #{id},
+		#{rep_content}, sysdate, 'N')
+	</insert>
+
+	<!-- 댓글 modify -->
+	<update id="qnaRepModify" parameterType="en.dto.QnaRepDTO">
+		update qna_reg_t
+		set content=#{content}
+		where no=#{no} and rep_no={rep_no}
+	</update>
+
+	<!-- 댓글 delete -->
+	<update id="qnaRepDelete" parameterType="String">
+		update qna_rep_t
+		set dlt_yn='Y'
+		where no=#{no} and rep_no={rep_no}
+	</update>
+
+</mapper>

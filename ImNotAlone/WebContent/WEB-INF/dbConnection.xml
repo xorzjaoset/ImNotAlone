@@ -17,43 +17,62 @@
 
 	<!-- 커넥션풀 연결 -->
 
-	<context:property-placeholder location="classpath:db.properties" />
-	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+	<context:property-placeholder
+		location="classpath:db.properties" />
+	<bean id="dataSource"
+		class="com.mchange.v2.c3p0.ComboPooledDataSource"
 		destroy-method="close">
 		<property name="driverClass" value="${jdbc.driver}" />
 		<property name="jdbcUrl" value="${jdbc.url}" />
 		<property name="user" value="${jdbc.username}" />
 		<property name="password" value="${jdbc.password}" />
 	</bean>
-	
-	
-		<!-- 트렌젝션 -->
-	  <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-	  	<!-- (이 의존성은 어딘가에 정의되어 있다) -->
-	  	<property name="dataSource" ref="dataSource"/>
-	  </bean>
-	  
-	 
- 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+
+
+	<!-- 트렌젝션 -->
+	<bean id="txManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<!-- (이 의존성은 어딘가에 정의되어 있다) -->
 		<property name="dataSource" ref="dataSource" />
-		<property name="mapperLocations" value="classpath:sql/*.xml"/>
-		<property name="typeAliasesPackage" value="com.myapp.domain" />  <!-- 패키지명지정, 패키지명 필요없이 클래스명가지고 사용할수 있음 -->
-	</bean> 
-		
-	<bean id="MemberDAO" class="ho.model.MemberDAO">
-		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
-	</bean> 
-	
-	<bean id="RoomStarDAO" class="ho.model.RoomStarDAO">
-		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
-	</bean>
-		
-	<bean id="MyPageDAO" class="ho.model.MyPageDAO">
-		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
 	</bean>
 
-	
-	
-	
+
+	<bean id="sqlSessionFactory"
+		class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="mapperLocations" value="classpath:sql/*.xml" />
+		<property name="typeAliasesPackage" value="com.myapp.domain" />  <!-- 패키지명지정, 패키지명 필요없이 클래스명가지고 사용할수 있음 -->
+	</bean>
+
+	<bean id="MemberDAO" class="ho.model.MemberDAO">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+
+	<bean id="RoomStarDAO" class="ho.model.RoomStarDAO">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+
+	<bean id="MyPageDAO" class="ho.model.MyPageDAO">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+
+
+	<!-- 관리자 -->
+	<!-- 블랙 -->
+	<bean class="en.model.BlackDAO" id="BlackDAO">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+		
+	<!-- 문의 -->
+	<bean class="en.model.QnaDAO" id="QnaDAO">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	<!-- 문의 댓글 -->
+	<bean class="en.model.QnaRepDAO" id="QnaRepDAO">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+
+
+
 </beans>
 
