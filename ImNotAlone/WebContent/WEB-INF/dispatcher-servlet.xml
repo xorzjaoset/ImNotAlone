@@ -19,6 +19,10 @@
 	<context:component-scan base-package="ho.controller"/>
 	<context:component-scan base-package="main.controller"/>
 	
+	<!-- en -->
+	<context:component-scan base-package="en.controller"/>
+	<context:component-scan base-package="en.service"/>
+	
 	<tx:annotation-driven transaction-manager="txManager"/>
 
 <!--    	<bean id="MainController" class="main.controller.MainController"/> -->

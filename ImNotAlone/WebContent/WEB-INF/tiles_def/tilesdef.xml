@@ -25,6 +25,10 @@
 			value="/WEB-INF/tiles_base/footer.jsp" />
 	</definition>
 
+	<!-- 112 -->
+	<definition template="/WEB-INF/tiles_view/en/police112.jsp"
+		name="admin112">
+	</definition>
 
 
 
@@ -111,71 +115,90 @@
 	<!-- main -->
 	<definition name="mainView" extends="based_mainLayout">
 		<put-attribute name="title" value="메인 화면" />
-		<put-attribute name="body" value="/WEB-INF/tiles_view/main/visualView.jsp" />
-		<put-attribute name="body1" value="/WEB-INF/tiles_view/main/contentsView.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/tiles_view/main/visualView.jsp" />
+		<put-attribute name="body1"
+			value="/WEB-INF/tiles_view/main/contentsView.jsp" />
 	</definition>
-
 
 	<!-- 관리자 -->
 	<!-- 블랙 -->
 	<definition name="blackwait" extends="based_layout">
 		<put-attribute name="title" value="블랙리스트관리" />
-		<put-attribute name="header" value="/WEB-INF/tiles_base/header.jsp" />
-		<put-attribute name="body" value="/WEB-INF/tiles_view/en/blackwait.jsp" />
+		<put-attribute name="header"
+			value="/WEB-INF/tiles_base/header.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/tiles_view/en/blackwait.jsp" />
 	</definition>
 
 	<definition name="blacklist" extends="based_layout">
 		<put-attribute name="title" value="블랙리스트" />
-		<put-attribute name="header" value="/WEB-INF/tiles_base/header.jsp" />
-		<put-attribute name="body" value="/WEB-INF/tiles_view/en/blacklist.jsp" />
+		<put-attribute name="header"
+			value="/WEB-INF/tiles_base/header.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/tiles_view/en/blacklist.jsp" />
 	</definition>
 
 	<definition name="board" extends="based_layout">
 		<put-attribute name="title" value="게시판 관리" />
-		<put-attribute name="header" value="/WEB-INF/tiles_base/header.jsp" />
-		<put-attribute name="body" value="/WEB-INF/tiles_view/en/board.jsp" />
+		<put-attribute name="header"
+			value="/WEB-INF/tiles_base/header.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/tiles_view/en/board.jsp" />
 	</definition>
 
 	<definition name="superhost" extends="based_layout">
 		<put-attribute name="title" value="광고 관리" />
-		<put-attribute name="header" value="/WEB-INF/tiles_base/header.jsp" />
-		<put-attribute name="body" value="/WEB-INF/tiles_view/en/superhost.jsp" />
+		<put-attribute name="header"
+			value="/WEB-INF/tiles_base/header.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/tiles_view/en/superhost.jsp" />
 	</definition>
 
 	<definition name="admin" extends="based_layout">
 		<put-attribute name="title" value="관리자 관리" />
-		<put-attribute name="header" value="/WEB-INF/tiles_base/header.jsp" />
-		<put-attribute name="body" value="/WEB-INF/tiles_view/en/admin.jsp" />
+		<put-attribute name="header"
+			value="/WEB-INF/tiles_base/header.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/tiles_view/en/admin.jsp" />
 	</definition>
 
 	<!-- 문의게시판 -->
 	<definition name="qna" extends="based_layout">
 		<put-attribute name="title" value="문의게시판" />
-		<put-attribute name="header" value="/WEB-INF/tiles_base/header.jsp" />
-		<put-attribute name="body" value="/WEB-INF/tiles_view/en/qna.jsp" />
+		<put-attribute name="header"
+			value="/WEB-INF/tiles_base/header.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/tiles_view/en/qna.jsp" />
 	</definition>
 
 	<definition name="qnaRead" extends="based_layout">
 		<put-attribute name="title" value="문의 읽기" />
-		<put-attribute name="header" value="/WEB-INF/tiles_base/header.jsp" />
-		<put-attribute name="body" value="/WEB-INF/tiles_view/en/qnaRead.jsp" />
+		<put-attribute name="header"
+			value="/WEB-INF/tiles_base/header.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/tiles_view/en/qnaRead.jsp" />
 	</definition>
 
 	<definition name="qnaWrite" extends="based_layout">
 		<put-attribute name="title" value="문의글 쓰기" />
-		<put-attribute name="header" value="/WEB-INF/tiles_base/header.jsp" />
-		<put-attribute name="body" value="/WEB-INF/tiles_view/en/qnaWrite.jsp" />
+		<put-attribute name="header"
+			value="/WEB-INF/tiles_base/header.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/tiles_view/en/qnaWrite.jsp" />
 	</definition>
 
 	<definition name="adqna" extends="based_layout">
 		<put-attribute name="title" value="광고문의게시판" />
-		<put-attribute name="header" value="/WEB-INF/tiles_base/header.jsp" />
-		<put-attribute name="body" value="/WEB-INF/tiles_view/en/adqna.jsp" />
+		<put-attribute name="header"
+			value="/WEB-INF/tiles_base/header.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/tiles_view/en/adqna.jsp" />
 	</definition>
 
-	<!-- <definition name="police112" extends="admin112">
+	<definition name="police112" extends="admin112">
 		<put-attribute name="title" value="신고하기" />
-	</definition> -->
+	</definition>
 
 
 
