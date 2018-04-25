@@ -149,7 +149,7 @@
 	</definition>
 
 	<!-- 문의게시판 -->
-	<!-- <definition name="qna" extends="based_layout">
+	<definition name="qna" extends="based_layout">
 		<put-attribute name="title" value="문의게시판" />
 		<put-attribute name="header" value="/WEB-INF/tiles_base/header.jsp" />
 		<put-attribute name="body" value="/WEB-INF/tiles_view/en/qna.jsp" />
@@ -173,9 +173,9 @@
 		<put-attribute name="body" value="/WEB-INF/tiles_view/en/adqna.jsp" />
 	</definition>
 
-	<definition name="police112" extends="admin112">
+	<!-- <definition name="police112" extends="admin112">
 		<put-attribute name="title" value="신고하기" />
-	</definition>-->
+	</definition> -->
 
 
 
