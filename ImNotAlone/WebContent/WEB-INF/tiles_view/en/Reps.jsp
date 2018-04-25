@@ -12,9 +12,9 @@
 	
 	
 	// 댓글리스트
-	function repList() {
+	/* function repList() {
 		$.ajax({
 			
 		});
-	}
+	} */
 </script>
