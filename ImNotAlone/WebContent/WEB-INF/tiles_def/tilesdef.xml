@@ -111,14 +111,12 @@
 	<!-- main -->
 	<definition name="mainView" extends="based_mainLayout">
 		<put-attribute name="title" value="메인 화면" />
-		<put-attribute name="body"
-			value="/WEB-INF/tiles_view/main/visualView.jsp" />
-		<put-attribute name="body1"
-			value="/WEB-INF/tiles_view/main/contentsView.jsp" />
+		<put-attribute name="body" value="/WEB-INF/tiles_view/main/visualView.jsp" />
+		<put-attribute name="body1" value="/WEB-INF/tiles_view/main/contentsView.jsp" />
 	</definition>
 
 
-	<!-- =========================관리자=================================== -->
+	<!-- 관리자 -->
 	<!-- 블랙 -->
 	<definition name="blackwait" extends="based_layout">
 		<put-attribute name="title" value="블랙리스트관리" />
@@ -151,7 +149,7 @@
 	</definition>
 
 	<!-- 문의게시판 -->
-	<definition name="qna" extends="based_layout">
+	<!-- <definition name="qna" extends="based_layout">
 		<put-attribute name="title" value="문의게시판" />
 		<put-attribute name="header" value="/WEB-INF/tiles_base/header.jsp" />
 		<put-attribute name="body" value="/WEB-INF/tiles_view/en/qna.jsp" />
@@ -177,8 +175,7 @@
 
 	<definition name="police112" extends="admin112">
 		<put-attribute name="title" value="신고하기" />
-	</definition>
-
+	</definition>-->
 
 
 

@@ -126,7 +126,7 @@ public class QnaController {
 	 *문의게시판 댓글	
 	 */	
 	// 댓글 리스트
-	@RequestMapping(value="/qnaRep", method=RequestMethod.GET)
+	/*@RequestMapping(value="/qnaRep", method=RequestMethod.GET)
 	@ResponseBody
 	public List<QnaRepDTO> selectQnaRep() {
 		
@@ -167,7 +167,7 @@ public class QnaController {
 	public void qnaRepDelete(@PathVariable String rep_no) {
 		
 		qrs.qnaRepDelete(rep_no);
-	}
+	}*/
 	
 	
 	
