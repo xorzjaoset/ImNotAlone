@@ -218,7 +218,6 @@
 		<put-attribute name="body"
 			value="/WEB-INF/tiles_view/en/qnaWrite.jsp" />
 	</definition>
-
 	<definition name="adqna" extends="based_layout">
 		<put-attribute name="title" value="광고문의게시판" />
 		<put-attribute name="header" value="/WEB-INF/tiles_base/header.jsp" />

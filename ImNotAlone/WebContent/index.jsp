@@ -8,6 +8,5 @@
 </head>
 <body>
 	<%response.sendRedirect("/ImNotAlone/share/main/mainView");%>
-	<!-- /ImNotAlone/share/main/mainView -->
 </body>
 </html>
