@@ -53,7 +53,6 @@ public class RoomService implements RoomServiceInterface, ApplicationContextAwar
 		String type_of = "";
 		int check = 0;
 		int check2 = 0;
-		int de = 0;
 		int like = 0;
 		int view = 0;
 		

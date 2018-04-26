@@ -80,22 +80,6 @@
                         </ul>
                     </div>
                     
-	             	  <div class="mb40">
-                        <h2 class="left-title">해쉬 태그</h2>
-	                     <ul class="list-inline tags-list">
-	                        <li><a href="#"><i class="fa fa-tag"></i> Shop</a></li>
-	                        <li><a href="#"><i class="fa fa-tag"></i> Beer</a></li>
-	                        <li><a href="#"><i class="fa fa-tag"></i> Beach</a></li>
-	                        <li><a href="#"><i class="fa fa-tag"></i> Cinemas</a></li>
-	                        <li><a href="#"><i class="fa fa-tag"></i> Hotel</a></li>
-	                        <li><a href="#"><i class="fa fa-tag"></i> Dinner</a></li>
-	                        <li><a href="#"><i class="fa fa-tag"></i> Lunch</a></li>
-	                        <li><a href="#"><i class="fa fa-tag"></i> Taxi</a></li>
-	                        <li><a href="#"><i class="fa fa-tag"></i> Bar & pubs</a></li>
-	                        <li><a href="#"><i class="fa fa-tag"></i> Games</a></li>
-	                        <li><a href="#"><i class="fa fa-tag"></i> Tickets</a></li>
-	                    </ul>
-	                </div>
                 
                 
                   

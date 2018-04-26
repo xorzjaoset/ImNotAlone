@@ -8,21 +8,15 @@
 
 
 	<!-- layOut -->
-	<definition name="based_mainLayout"
-		template="/WEB-INF/tiles_base/mainLayout.jsp">
-		<put-attribute name="header"
-			value="/WEB-INF/tiles_base/mainHeader.jsp" />
-		<put-attribute name="footer"
-			value="/WEB-INF/tiles_base/footer.jsp" />
+	<definition name="based_mainLayout" template="/WEB-INF/tiles_base/mainLayout.jsp">
+		<put-attribute name="header" value="/WEB-INF/tiles_base/mainHeader.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/tiles_base/footer.jsp" />
 	</definition>
 
 
-	<definition name="based_layout"
-		template="/WEB-INF/tiles_base/layout.jsp">
-		<put-attribute name="header"
-			value="/WEB-INF/tiles_base/header.jsp" />
-		<put-attribute name="footer"
-			value="/WEB-INF/tiles_base/footer.jsp" />
+	<definition name="based_layout" template="/WEB-INF/tiles_base/layout.jsp">
+		<put-attribute name="header" value="/WEB-INF/tiles_base/header.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/tiles_base/footer.jsp" />
 	</definition>
 
 	<!-- 112 -->
@@ -88,16 +82,14 @@
 			value="/WEB-INF/tiles_view/ho/room/roomStarView4.jsp" />
 	</definition>
 
-	<definition name="roomStarRegisterForm"
-		extends="based_layout">
+	<definition name="roomStarRegisterForm" extends="based_layout">
 		<put-attribute name="title" value="방 올리기" />
 		<put-attribute name="body"
 			value="/WEB-INF/tiles_view/ho/room/roomStarRegisterForm.jsp" />
 	</definition>
 
 
-	<definition name="roomStarContentView"
-		extends="based_layout">
+	<definition name="roomStarContentView" extends="based_layout">
 		<put-attribute name="title" value="방 자세히보기" />
 		<put-attribute name="body"
 			value="/WEB-INF/tiles_view/ho/room/roomStarContentView.jsp" />
@@ -158,79 +150,79 @@
 
 
 
+	<!-- 네이버 로그인 테스트 -->
+	<definition name="NaverLogin" extends="based_layout">
+		<put-attribute name="title" value="네이버 로그인" />
+		<put-attribute name="body" value="/WEB-INF/tiles_view/ho/naverLogin.jsp" />
+	</definition>
+
+	<!-- 네이버 콜백 -->
+	<definition name="CallBack" extends="based_layout">
+		<put-attribute name="title" value="네이버 콜백" />
+		<put-attribute name="body" value="/WEB-INF/tiles_view/ho/naverSuccess.jsp" />
+	</definition>
+<!-- >>>>>>> branch 'master' of https://github.com/xorzjaoset/ImNotAlone.git -->
+
+
 	<!-- 관리자 -->
 	<!-- 블랙 -->
 	<definition name="blackwait" extends="based_layout">
 		<put-attribute name="title" value="블랙리스트관리" />
-		<put-attribute name="header"
-			value="/WEB-INF/tiles_base/header.jsp" />
+		<put-attribute name="header" value="/WEB-INF/tiles_base/header.jsp" />
 		<put-attribute name="body"
 			value="/WEB-INF/tiles_view/en/blackwait.jsp" />
 	</definition>
 
 	<definition name="blacklist" extends="based_layout">
 		<put-attribute name="title" value="블랙리스트" />
-		<put-attribute name="header"
-			value="/WEB-INF/tiles_base/header.jsp" />
+		<put-attribute name="header" value="/WEB-INF/tiles_base/header.jsp" />
 		<put-attribute name="body"
 			value="/WEB-INF/tiles_view/en/blacklist.jsp" />
 	</definition>
 
 	<definition name="board" extends="based_layout">
 		<put-attribute name="title" value="게시판 관리" />
-		<put-attribute name="header"
-			value="/WEB-INF/tiles_base/header.jsp" />
-		<put-attribute name="body"
-			value="/WEB-INF/tiles_view/en/board.jsp" />
+		<put-attribute name="header" value="/WEB-INF/tiles_base/header.jsp" />
+		<put-attribute name="body" value="/WEB-INF/tiles_view/en/board.jsp" />
 	</definition>
 
 	<definition name="superhost" extends="based_layout">
 		<put-attribute name="title" value="광고 관리" />
-		<put-attribute name="header"
-			value="/WEB-INF/tiles_base/header.jsp" />
+		<put-attribute name="header" value="/WEB-INF/tiles_base/header.jsp" />
 		<put-attribute name="body"
 			value="/WEB-INF/tiles_view/en/superhost.jsp" />
 	</definition>
 
 	<definition name="admin" extends="based_layout">
 		<put-attribute name="title" value="관리자 관리" />
-		<put-attribute name="header"
-			value="/WEB-INF/tiles_base/header.jsp" />
-		<put-attribute name="body"
-			value="/WEB-INF/tiles_view/en/admin.jsp" />
+		<put-attribute name="header" value="/WEB-INF/tiles_base/header.jsp" />
+		<put-attribute name="body" value="/WEB-INF/tiles_view/en/admin.jsp" />
 	</definition>
 
 	<!-- 문의게시판 -->
 	<definition name="qna" extends="based_layout">
 		<put-attribute name="title" value="문의게시판" />
-		<put-attribute name="header"
-			value="/WEB-INF/tiles_base/header.jsp" />
-		<put-attribute name="body"
-			value="/WEB-INF/tiles_view/en/qna.jsp" />
+		<put-attribute name="header" value="/WEB-INF/tiles_base/header.jsp" />
+		<put-attribute name="body" value="/WEB-INF/tiles_view/en/qna.jsp" />
 	</definition>
 
 	<definition name="qnaRead" extends="based_layout">
 		<put-attribute name="title" value="문의 읽기" />
-		<put-attribute name="header"
-			value="/WEB-INF/tiles_base/header.jsp" />
-		<put-attribute name="body"
-			value="/WEB-INF/tiles_view/en/qnaRead.jsp" />
+		<put-attribute name="header" value="/WEB-INF/tiles_base/header.jsp" />
+		<put-attribute name="body" value="/WEB-INF/tiles_view/en/qnaRead.jsp" />
 	</definition>
 
 	<definition name="qnaWrite" extends="based_layout">
 		<put-attribute name="title" value="문의글 쓰기" />
-		<put-attribute name="header"
-			value="/WEB-INF/tiles_base/header.jsp" />
+		<put-attribute name="header" value="/WEB-INF/tiles_base/header.jsp" />
 		<put-attribute name="body"
 			value="/WEB-INF/tiles_view/en/qnaWrite.jsp" />
 	</definition>
 
 	<definition name="adqna" extends="based_layout">
 		<put-attribute name="title" value="광고문의게시판" />
-		<put-attribute name="header"
-			value="/WEB-INF/tiles_base/header.jsp" />
-		<put-attribute name="body"
-			value="/WEB-INF/tiles_view/en/adqna.jsp" />
+		<put-attribute name="header" value="/WEB-INF/tiles_base/header.jsp" />
+		<put-attribute name="body" value="/WEB-INF/tiles_view/en/adqna.jsp" />
 	</definition>
 
 	<definition name="police112" extends="admin112">
