@@ -28,7 +28,7 @@ public class AroomController {
 
 	@ModelAttribute(value = "basic")
 	public String keyForm(String string) {
-
+		System.out.println("나와라라라라라라라라라"+string);
 		if (string == null) {
 
 		}

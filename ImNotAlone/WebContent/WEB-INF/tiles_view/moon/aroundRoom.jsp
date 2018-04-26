@@ -4,7 +4,7 @@
 <c:if test="${fnum !='' ||fnum ne null}">
 <script>
  $(document).ready(function(){
-	var fnum = ${fnum }
+	var fnum = ${fnum}
 	$("#basic").val(fnum).attr("selected","selected");
 	var target = document.getElementById("basic");
 	var text = target.options[target.selectedIndex].text;
