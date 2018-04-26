@@ -22,7 +22,7 @@
 				<input type="button" class="form-control" value="회원통계" onclick="location.href='/ImNotAlone/share/statistics'">
 			</div>
 			<div class="form-group">
-				<input type="button" class="form-control" value="블랙리스트 관리" onclick="location.href='/ImNotAlone/share/blacklist'">
+				<input type="button" class="form-control" value="블랙리스트 관리" onclick="location.href='/ImNotAlone/share/blackwait'">
 			</div>
 			<div class="form-group">
 				<input type="button" class="form-control" value="게시판 관리" onclick="location.href='/ImNotAlone/share/board'">

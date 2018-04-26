@@ -125,33 +125,34 @@ public class QnaController {
 	/*	
 	 *문의게시판 댓글	
 	 */	
-	// 댓글 리스트
-	/*@RequestMapping(value="/qnaRep", method=RequestMethod.GET)
+	//댓글 리스트
 	@ResponseBody
-	public List<QnaRepDTO> selectQnaRep() {
+	@RequestMapping(value="/qnaRep", method=RequestMethod.GET)
+	public List<QnaRepDTO> selectQnaRep(Model model) {
 		
 		return qrs.selectQnaRep();
 	}
 	
 	// 댓글 쓰기
-	@RequestMapping(value="/qnaRepInsert", method=RequestMethod.GET)
 	@ResponseBody
+	@RequestMapping(value="/qnaRepInsert", method=RequestMethod.POST)
 	public int qnaRepWrite(@RequestParam String no, @RequestParam String rep_content, HttpSession session) {
 		
-		QnaRepDTO dto = new QnaRepDTO();
+		QnaRepDTO Rdto = new QnaRepDTO();
+		Rdto.setNo(no);
+		Rdto.setRep_content(rep_content);
+		
 		MemberDTO member = (MemberDTO) session.getAttribute("member");
+		String id = member.getUser_id();
+		Rdto.setId(id);
 		
-		dto.setNo(no);
-		dto.setRep_content(rep_content);
 		
-		dto.setId(member.getUser_id());
-		
-		return qrs.qnaRepWrite(dto);
+		return qrs.qnaRepWrite(Rdto);
 	}
 	
 	// 댓글 수정
-	@RequestMapping(value="/qnaRepModify", method=RequestMethod.GET)
 	@ResponseBody
+	@RequestMapping(value="/qnaRepModify", method=RequestMethod.GET)
 	public int qnaRepModify(@RequestParam String rep_no, @RequestParam String rep_content) {
 		
 		QnaRepDTO dto = new QnaRepDTO();
@@ -162,12 +163,12 @@ public class QnaController {
 	}
 	
 	// 댓글 삭제 > 업데이트
-	@RequestMapping(value="/qnaRepDelete", method=RequestMethod.GET)
 	@ResponseBody
+	@RequestMapping(value="/qnaRepDelete", method=RequestMethod.GET)
 	public void qnaRepDelete(@PathVariable String rep_no) {
 		
 		qrs.qnaRepDelete(rep_no);
-	}*/
+	}
 	
 	
 	

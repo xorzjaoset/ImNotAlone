@@ -49,7 +49,7 @@
 	
 	<br>
 	<div class="container">
-	<label for="content">댓글</label>
+	<label for="rep_content">댓  글</label>
 	<form name="repInsertForm">
 		<div class="input-group">
 			<input type="hidden" name="no" id="no" value="${dto.no}"/>

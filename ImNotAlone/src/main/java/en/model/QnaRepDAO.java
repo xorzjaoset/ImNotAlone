@@ -24,17 +24,18 @@ public class QnaRepDAO extends SqlSessionDaoSupport {
 	}
 	
 	// 댓글 쓰기
-	public int qnaRepWrite(QnaRepDTO dto) {
+	public int qnaRepWrite(QnaRepDTO Rdto) {
 		System.out.println("qnaRepWrite QnaRepDAO");
+		System.out.println("Rdto : " + Rdto);
 		
-		return getSqlSession().insert("enadmin.qnaRepWrite", dto);
+		return getSqlSession().insert("enadmin.qnaRepWrite", Rdto);
 	}
 	
 	// 댓글 수정
-	public int qnaRepModify(QnaRepDTO dto) {
+	public int qnaRepModify(QnaRepDTO Rdto) {
 		System.out.println("qnaRepModify QnaRepDAO");
 		
-		return getSqlSession().update("enadmin.qnaRepModify", dto);
+		return getSqlSession().update("enadmin.qnaRepModify", Rdto);
 	}
 	
 	// 댓글 삭제 > 업데이트

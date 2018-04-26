@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="profile">
+
+<!-- 프로필 등록 -->
+<insert parameterType="moon.dto.ProfileDTO" id="insertprofile"> insert into M_PRO_T values (#{mp_id},#{mp_name},#{mp_jumin1},#{mp_gender},#{mp_phone},#{mp_job},#{mp_addr1},#{mp_pn},#{mp_pp}) </insert>
+
+<!--  프로필 등록여부 확인 -->
+<select id="checkProfile" parameterType="String" resultType="String">
+select mp_id from m_pro_t where mp_id=#{mp_id}
+</select>
+
+<!-- 프로필 등록되있을시에 수정가능페이지 -->
+<select id="profileInfo" parameterType="String" resultType="moon.dto.ProfileDTO">
+select * from m_pro_t where mp_id=#{mp_id}
+</select>
+
+<!--  프로필 수정!!! -->
+<update id="profileUpdate" parameterType="String">
+update m_pro_t set mp_job=#{mp_job}, mp_phone=#{mp_phone},mp_addr1=#{mp_addr1} where mp_id=#{mp_id}
+</update>
+
+<!--  방매칭 확인시에 호스트인지 게스트인지 확인 -->
+<select id="mtHostCheck" parameterType="String" resultType="String">
+select r_id from ROOM_UPLOAD where r_id= #{mp_id}
+</select>
+
+<!-- 댓글 입력시에 프로필 등록 되있는지 아닌지 확인!! -->
+<select id="checkComment" parameterType="String" resultType="String">
+select mp_id from m_pro_t where mp_id=#{mp_id}
+</select>
+
+<!-- RoomDetail에 코멘트 달기 -->
+<insert parameterType="Map" id="insertcomment"> 
+insert into R_COM_T (rc_no, rc_id, rc_content,rc_date) values (#{rc_no},#{rc_id},#{rc_content},sysdate) 
+</insert>
+
+<!-- RoomDetail에 댓글 뿌려주기!! -->
+<select id="getComment" parameterType="String" resultType="moon.dto.RcDTO">
+select * from R_com_t
+</select>
+
+<!-- RoomDetail에 방 상세정보 뿌려주기 -->
+<select id="selectRoomInfo" resultType="moon.dto.roomUpDTO" parameterType="String"> 
+select * from ROOM_UPLOAD where R_BOARD_NO=#{rp_board_no}
+</select>
+
+<!-- RoomDetail에 사진들 뿌려주기~~ 나중에 어떤 칼럼들 보여줄지 정해주자!-->
+<select id="selectphoto" resultType="moon.dto.roomUpDTO" parameterType="String">
+ select a.r_board_no, b.rp_sname from ROOM_UPLOAD a inner join r_ph_t b on a.r_board_no = b.rp_board_no where r_board_no=#{rp_board_no}
+ </select>
+
+<!-- RoomDetail에서 문의하기(현재 보류중)-->
+<insert parameterType="moon.dto.RinqDTO" id="insertInquiry"> insert into R_INQ_T (ri_email,ri_content) values(#{ri_email},#{ri_content}) </insert>
+
+<!-- Aroom에서 조건으로 룸 검색 -->
+<select parameterType="String" id="getShare" resultType="moon.dto.RoomPtDTO"> 
+select b.rp_board_no, b.rp_sname from ROOM_UPLOAD a inner join r_ph_t b on b.rp_board_no=a.R_BOARD_NO where b.RP_IMG_NO='1' and a.R_INDEX=#{string}
+</select>
+<select parameterType="String" id="getRmate" resultType="moon.dto.RoomPtDTO"> 
+ select b.rp_board_no, b.rp_sname from ROOM_UPLOAD a inner join r_ph_t b on b.rp_board_no=a.R_BOARD_NO where b.RP_IMG_NO='1' and a.R_INDEX=#{string}
+</select>
+<select parameterType="String" id="getOffice" resultType="moon.dto.RoomPtDTO"> 
+ select b.rp_board_no, b.rp_sname from ROOM_UPLOAD a inner join r_ph_t b on b.rp_board_no=a.R_BOARD_NO where b.RP_IMG_NO='1' and a.R_INDEX=#{string}
+</select>
+<select parameterType="String" id="getOther" resultType="moon.dto.RoomPtDTO">
+ select b.rp_board_no, b.rp_sname from ROOM_UPLOAD a inner join r_ph_t b on b.rp_board_no=a.R_BOARD_NO where b.RP_IMG_NO='1' and a.R_INDEX=#{string}
+ </select>
+
+
+
+<!-- 방 둘러보기 ajax 이용해서 필터링 거치는 쿼리문 -->
+<select parameterType="map" id="getShare1" resultType="moon.dto.ProfileDTO"> select mp_no, mp_pn from M_PRO_t where mp_id=#{fnum} order by mp_name </select>
+<select parameterType="map" id="getShare2" resultType="moon.dto.ProfileDTO"> select mp_no, mp_pn from M_PRO_t where mp_id=#{fnum} order by mp_name desc </select>
+
+<!-- 보류~~~~~~ 아직 없음 값이 -->
+<select parameterType="map" id="getShare3" resultType="moon.dto.ProfileDTO"> </select>
+<select parameterType="map" id="getShare5" resultType="moon.dto.ProfileDTO"> select mp_pn from M_PRO_t where mp_id=#{fnum} order by mp_name </select>
+<select parameterType="map" id="getShare6" resultType="moon.dto.ProfileDTO"> select mp_pn from m_pro_t where mp_id=#{fnum} order by mp_name desc </select>
+
+<!-- 방 매칭하기 -->
+<insert parameterType="moon.dto.MtRoomDTO" id="insertMtRoomsub"> 
+insert into mt_t (mt_id,mt_date) values(#{mt_id},sysdate) </insert>
+<select id="selectMtRoomsub" resultType="moon.dto.MtRoomDTO">
+ select * from mt_t </select>
+<select parameterType="String" id="selectMtProsub" resultType="moon.dto.ProfileDTO">
+ select * from m_pro_t where mp_id=#{mt_id}
+  </select>
+
+</mapper>

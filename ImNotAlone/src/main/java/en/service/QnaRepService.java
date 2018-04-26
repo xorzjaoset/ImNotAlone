@@ -22,17 +22,18 @@ public class QnaRepService {
 	}
 	
 	// 댓글 insert
-	public int qnaRepWrite(QnaRepDTO dto) {
+	public int qnaRepWrite(QnaRepDTO Rdto) {
 		System.out.println("qnaRepWrite QnaRepService");
+		System.out.println("Rdto : " + Rdto);
 		
-		return dao.qnaRepWrite(dto);
+		return dao.qnaRepWrite(Rdto);
 	}
 	
 	// 댓글 수정
-	public int qnaRepModify(QnaRepDTO dto) {
+	public int qnaRepModify(QnaRepDTO Rdto) {
 		System.out.println("qnaRepModify QnaRepService");
 		
-		return dao.qnaRepModify(dto);
+		return dao.qnaRepModify(Rdto);
 	}
 	
 	// 댓글 삭제 > 업데이트

@@ -11,7 +11,7 @@
 		</div>
 	</div>
 </div>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 	$(document).ready(function() {
 		$("#qnaRead").onClick(function() {
 			
@@ -20,7 +20,7 @@
 		
 		});
 	});
-</script>
+</script> -->
 <div class="container">
 	<!-- 김은정 굳아이디어 -->
 
@@ -52,10 +52,13 @@
 
 			<!-- 그 밑에 리스트 -->
 			<br> <br>
-			<c:if test="${member.user_id != null}">
-				<button type="button" id="qnaWrite" class="btn-primary" onclick="location.href='qnaWrite'">글쓰기</button>
-			</c:if>
-			<!-- <button type="button" id="qnaWrite" class="btn-primary" onclick="location.href='qnaWrite'">글쓰기</button> -->
+			<div style="position: relative; padding-bottom: 10px;">
+				<c:if test="${member.user_id != null}">
+					<button type="button" id="qnaWrite" class="btn-primary"
+						onclick="location.href='qnaWrite'"
+						style="position: relative; left: 210px;">글쓰기</button>
+				</c:if>
+			</div>
 			<form>
 				<div id="borderedTable" class="body collapse in">
 					<table class="table table-bordered responsive-table">

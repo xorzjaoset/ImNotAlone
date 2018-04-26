@@ -9,8 +9,15 @@ public class QnaRepDTO {
 	private String id;
 	private String rep_content;
 	private Date rep_reg_tm;
+	private String dlt_yn;
 	
 	
+	public String getDlt_yn() {
+		return dlt_yn;
+	}
+	public void setDlt_yn(String dlt_yn) {
+		this.dlt_yn = dlt_yn;
+	}
 	public String getNo() {
 		return no;
 	}
@@ -43,13 +50,12 @@ public class QnaRepDTO {
 	}
 	
 	
+	
 	@Override
 	public String toString() {
 		return "QnaRepDTO [no=" + no + ", rep_no=" + rep_no + ", id=" + id + ", rep_content=" + rep_content
-				+ ", rep_reg_tm=" + rep_reg_tm + "]";
+				+ ", rep_reg_tm=" + rep_reg_tm + ", dlt_yn=" + dlt_yn + "]";
 	}
-	
-	
 	
 	
 }

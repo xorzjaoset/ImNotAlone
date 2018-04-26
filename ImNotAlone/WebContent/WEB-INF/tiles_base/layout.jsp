@@ -10,6 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="/ImNotAlone/resources/css/bundle.css" rel="stylesheet">
     <link href="/ImNotAlone/resources/css/style.css" rel="stylesheet">
+    <script src="http://code.jquery.com/jquery-3.1.0.min.js"></script>
 	<title><tiles:getAsString name="title" /></title>
 	
 	<!-- <script>

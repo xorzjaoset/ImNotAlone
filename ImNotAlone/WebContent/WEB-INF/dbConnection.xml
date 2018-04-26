@@ -62,7 +62,7 @@
 	<bean class="en.model.BlackDAO" id="BlackDAO">
 		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
 	</bean>
-		
+
 	<!-- 문의 -->
 	<bean class="en.model.QnaDAO" id="QnaDAO">
 		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
@@ -72,6 +72,17 @@
 		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
 	</bean>
 
+
+	<!-- 게스트 -->
+	<bean class="moon.model.MtDAO" id="MtDAO">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	<bean class="moon.model.ProfileDAO" id="ProfileDAO">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	<bean class="moon.model.RcDAO" id="RcDAO">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
 
 
 </beans>

@@ -31,6 +31,15 @@
 	</definition>
 
 
+	<!-- main -->
+	<definition name="mainView" extends="based_mainLayout">
+		<put-attribute name="title" value="메인 화면" />
+		<put-attribute name="body"
+			value="/WEB-INF/tiles_view/main/visualView.jsp" />
+		<put-attribute name="body1"
+			value="/WEB-INF/tiles_view/main/contentsView.jsp" />
+	</definition>
+
 
 	<!-- login -->
 	<definition name="loginForm" extends="based_layout">
@@ -53,14 +62,11 @@
 			value="/WEB-INF/tiles_view/ho/room/roomStarView.jsp" />
 	</definition>
 
-
-
 	<definition name="roomStarView" extends="based_layout">
 		<put-attribute name="title" value="방 자랑하기" />
 		<put-attribute name="body"
 			value="/WEB-INF/tiles_view/ho/room/roomStarView.jsp" />
 	</definition>
-
 
 	<definition name="roomStarView2" extends="based_layout">
 		<put-attribute name="title" value="방 자랑하기" />
@@ -112,14 +118,45 @@
 	</definition>
 
 
-	<!-- main -->
-	<definition name="mainView" extends="based_mainLayout">
-		<put-attribute name="title" value="메인 화면" />
+
+	<!-- 게스트 -->
+	<definition name="aroundRoom" extends="based_layout">
+		<put-attribute name="title" value="방 둘러보기" />
 		<put-attribute name="body"
-			value="/WEB-INF/tiles_view/main/visualView.jsp" />
-		<put-attribute name="body1"
-			value="/WEB-INF/tiles_view/main/contentsView.jsp" />
+			value="/WEB-INF/tiles_view/moon/aroundRoom.jsp" />
 	</definition>
+
+	<definition name="insertProfile" extends="based_layout">
+		<put-attribute name="title" value="프로필 등록" />
+		<put-attribute name="body"
+			value="/WEB-INF/tiles_view/moon/guestProfile.jsp" />
+	</definition>
+
+	<definition name="profileCheck" extends="based_layout">
+		<put-attribute name="title" value="프로필 수정" />
+		<put-attribute name="body"
+			value="/WEB-INF/tiles_view/moon/guestCheck.jsp" />
+	</definition>
+
+	<definition name="roomDetail" extends="based_layout">
+		<put-attribute name="title" value="방상세정보" />
+		<put-attribute name="body"
+			value="/WEB-INF/tiles_view/moon/roomDetail.jsp" />
+	</definition>
+
+	<definition name="matchingRoom" extends="based_layout">
+		<put-attribute name="title" value="매칭" />
+		<put-attribute name="body"
+			value="/WEB-INF/tiles_view/moon/matchingRoom.jsp" />
+	</definition>
+
+	<definition name="mtRoomPro" extends="based_layout">
+		<put-attribute name="title" value="매칭인원" />
+		<put-attribute name="body"
+			value="/WEB-INF/tiles_view/moon/mtRoomPro.jsp" />
+	</definition>
+
+
 
 	<!-- 관리자 -->
 	<!-- 블랙 -->

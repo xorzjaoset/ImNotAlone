@@ -14,25 +14,55 @@
 
 
 
-	<context:annotation-config/>
-	<context:component-scan base-package="ho.service"/>
-	<context:component-scan base-package="ho.controller"/>
-	<context:component-scan base-package="main.controller"/>
+	<context:annotation-config />
 	
-	<!-- en -->
-	<context:component-scan base-package="en.controller"/>
-	<context:component-scan base-package="en.service"/>
-	
-	<tx:annotation-driven transaction-manager="txManager"/>
+	<!-- ho -->
+	<context:component-scan
+		base-package="ho.service" />
+	<context:component-scan
+		base-package="ho.controller" />
+	<context:component-scan
+		base-package="main.controller" />
 
-<!--    	<bean id="MainController" class="main.controller.MainController"/> -->
+
+	<!-- en -->
+	<context:component-scan
+		base-package="en.controller" />
+	<context:component-scan
+		base-package="en.service" />
+
+
+	<!-- moon -->
+	<bean class="moon.controller.AroomController" id="AroomController" />
+	<bean class="moon.controller.ProfileController"
+		id="ProfileController" />
+	<bean class="moon.controller.GcommentController"
+		id="CommentController" />
+	<bean class="moon.controller.RoomDetailController"
+		id="RoomDetailController" />
+	<bean class="moon.controller.MatchingRoomController"
+		id="MathcingRoomController" />
+	<bean class="moon.service.ProfileService" id="ProfileService" />
+	<bean class="moon.service.RcService" id="RcService" />
+	<bean class="moon.service.MtService" id="mtService" />
+
+
+	<tx:annotation-driven
+		transaction-manager="txManager" />
+
+	<!-- <bean id="MainController" class="main.controller.MainController"/> -->
 
 
 	<!-- ★★★ 서블릿 매핑을 쓰기위한 전체 경로로 url-mapping 하기위함 ★★★ -->
-	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" p:alwaysUseFullPath="true"/>
-	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" p:alwaysUseFullPath="true"/>
-	
-	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+	<bean
+		class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping"
+		p:alwaysUseFullPath="true" />
+	<bean
+		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"
+		p:alwaysUseFullPath="true" />
+
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
 		<property name="basenames">
 			<list>
 				<value>messages.validation</value>
@@ -41,28 +71,30 @@
 		</property>
 	</bean>
 
-	
+
 	<!-- responseBody 로 받을때 한글화(Ajax) String처리 -->
 	<mvc:annotation-driven>
-			<mvc:message-converters>   
-				<bean class="org.springframework.http.converter.StringHttpMessageConverter">
-					<property name="supportedMediaTypes">
-						<list>
-							<value>text/html;charset=UTF-8</value>
-						</list>
-					</property>
-				</bean>
-			</mvc:message-converters>
+		<mvc:message-converters>
+			<bean
+				class="org.springframework.http.converter.StringHttpMessageConverter">
+				<property name="supportedMediaTypes">
+					<list>
+						<value>text/html;charset=UTF-8</value>
+					</list>
+				</property>
+			</bean>
+		</mvc:message-converters>
 	</mvc:annotation-driven>
-	
+
 	<mvc:interceptors>   <!-- 그냥 메서드 오버라이딩해서 쓰면됨 -->
 		<mvc:interceptor>
 			<mvc:mapping path="/roomStarRegisterForm" />
 			<mvc:mapping path="*" />
-			<bean id="InterceptorController" class="ho.controller.InterceptorController" />
+			<bean id="InterceptorController"
+				class="ho.controller.InterceptorController" />
 		</mvc:interceptor>
 	</mvc:interceptors>
-	
-	
-	
+
+
+
 </beans>

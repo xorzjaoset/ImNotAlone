@@ -99,31 +99,30 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<!-- 댓글 list -->
-	<select id="selectQnaRep" resultType="en.dto.QnaRepDTO">
+	<select id="selectQnaRep" resultType="en.dto.QnaRepDTO" parameterType="String">
 		select * from qna_rep_t
-		where dlt_yn='N'
+		<!-- where no=#{no} order by rep_no -->
 	</select>
 
 	<!-- 댓글 write -->
-	<insert id="qnaRepWrite" parameterType="en.dto.QnaRepDTO">
+	<insert id="qnaRepWrite" parameterType="en.dto.QnaRepDTO" >
 		insert into
 		qna_rep_t(no, rep_no, id, rep_content, rep_reg_tm, dlt_yn)
-		values(qna_t_seq.nextval, qna_rep_t_seq.nextval, #{id},
-		#{rep_content}, sysdate, 'N')
+		values(#{no}, qna_rep_t_seq.nextval, #{id}, #{rep_content}, sysdate, 'N')
 	</insert>
 
 	<!-- 댓글 modify -->
 	<update id="qnaRepModify" parameterType="en.dto.QnaRepDTO">
 		update qna_reg_t
-		set content=#{content}
-		where no=#{no} and rep_no={rep_no}
+		set rep_content=#{content}
+		where rep_no=#{rep_no}
 	</update>
 
 	<!-- 댓글 delete -->
 	<update id="qnaRepDelete" parameterType="String">
 		update qna_rep_t
 		set dlt_yn='Y'
-		where no=#{no} and rep_no={rep_no}
+		where and rep_no=#{rep_no}
 	</update>
 
 </mapper>

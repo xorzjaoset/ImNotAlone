@@ -72,13 +72,13 @@ public class AdminController {
 		return "admin";
 	}
 	
-	/*@RequestMapping(value = "/police112", method = RequestMethod.GET)
+	@RequestMapping(value = "/police112", method = RequestMethod.GET)
 	   public String police112(@RequestParam("id") String id, Model model) {
 		System.out.println("신고창");
 		
 		model.addAttribute("id", id);
 		
 		return "police112";
-	   }*/
+	   }
 	
 }

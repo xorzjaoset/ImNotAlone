@@ -24,7 +24,7 @@
 
 
                   <li><a href="blog.html">호스팅하기</a></li>
-                  <li><a href="blog.html">방둘러보기</a></li>
+                  <li><a href="/ImNotAlone/share/moon/around">방둘러보기</a></li>
                   
                   <li class="dropdown">
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">방스타그램 <span class="caret"></span></a>
@@ -46,7 +46,7 @@
                           <li><a href="/ImNotAlone/share/wishList">위시리스트</a></li>
                           <li><a href="faq.html">매칭확인</a></li>
                           <li class="divider"></li>
-                          <li><a href="typography.html">프로필등록</a></li>
+                          <li><a href="/ImNotAlone/share/moon/profile">프로필등록</a></li>
                           <li><a href="grid-system.html">개인정보보기</a></li>
                           <li><a href="grid-system.html">개인정보수정</a></li>
                       </ul>
@@ -57,7 +57,7 @@
                   <li class="dropdown active">
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">관리하기<span class="caret"></span></a>
                       <ul class="dropdown-menu">
-                          <li><a href="/ImNotAlone/share/blacklist">블랙리스트 관리</a></li>
+                          <li><a href="/ImNotAlone/share/blackwait">블랙리스트 관리</a></li>
                           <li><a href="ImNotAlone/share/board">게시판 관리</a></li>
                           <li><a href="/ImNotAlone/share/superhost">광고 관리</a></li>
                           <li class="divider"></li>
