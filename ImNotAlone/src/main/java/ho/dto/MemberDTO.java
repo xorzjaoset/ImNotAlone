@@ -13,6 +13,9 @@ public class MemberDTO {
 	private String user_email;
 	private Date user_sign_in;
 	private static LinkedHashSet<Integer> recent_list = null;
+	private String user_gender;
+	private String user_age;
+	
 	public MemberDTO(){}
 
 
@@ -30,6 +33,29 @@ public class MemberDTO {
 		this.user_email = user_email;
 		this.user_sign_in = user_sign_in;
 	}
+
+	
+	
+	public MemberDTO(String user_id, String user_name, String user_email,
+			String user_gender, String user_age) {
+		super();
+		this.user_id = user_id;
+		this.user_name = user_name;
+		this.user_email = user_email;
+		this.user_gender = user_gender;
+		this.user_age = user_age;
+	}
+
+
+	public String getUser_gender() {
+		return user_gender;
+	}
+
+
+	public void setUser_gender(String user_gender) {
+		this.user_gender = user_gender;
+	}
+
 
 	public String getUser_id() {
 		return user_id;
@@ -84,14 +110,20 @@ public class MemberDTO {
 		this.recent_list.add(recentNo);
 	}
 
+	public String getUser_age() {
+		return user_age;
+	}
+	public void setUser_age(String user_age) {
+		this.user_age = user_age;
+	}
+
+
 	@Override
 	public String toString() {
 		return "MemberDTO [user_id=" + user_id + ", user_password=" + user_password + ", user_name=" + user_name
-				+ ", user_email=" + user_email + ", user_sign_in=" + user_sign_in + ", recent_list=" + recent_list
-				+ "]";
+				+ ", user_email=" + user_email + ", user_sign_in=" + user_sign_in + ", user_gender=" + user_gender
+				+ ", user_age=" + user_age + "]";
 	}
 
-			
-	
 	
 }

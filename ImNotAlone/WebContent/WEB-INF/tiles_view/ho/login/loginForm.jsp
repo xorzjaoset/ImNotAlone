@@ -1,4 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>          
+<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.2.js" charset="utf-8"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
         <div class="page-bread mb70">
             <div class="container">
                 <div class="row">
@@ -33,13 +35,11 @@
                             </div>
                             <input type="submit" value="Login" class='btn btn-default btn-lg btn-block'>
                         </form>
-                        <hr>
-                        <div class='text-center'>Or</div>
-                        <div class='buttons-login'>
-                            <a href='#' class='btn btn-facebook btn-social btn-block'><i class='fa fa-facebook'></i> Login with Facebook</a>
-                            <a href='#' class='btn btn-twitter btn-social btn-block'><i class='fa fa-twitter'></i> Login with Twiter</a>
-                            <a href='#' class='btn btn-gplus btn-social btn-block'><i class='fa fa-google-plus'></i> Login with Google+</a>
-                        </div>
+                        <hr>  
+                        <div class='text-center'>Or</div>  
+                         <div id="naver_id_login" style="width:100%;">
+                           <a href="${url}"> <img src="/ImNotAlone/resources/images/naverLogin.jpg" style="width:100%;"></a>
+                    	 </div>
                     </div>
                 </div>
             </div>
